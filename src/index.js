@@ -32,6 +32,10 @@ app.use(express.urlencoded({ extended: true }));
 //sử dụng json
 app.use(express.json());
 
+//Kết nối cơ sở dữ liệu
+const db=require('./config/db');
+db.connect();
+
 // Sử dụng router
 // config route init
 const route=require('./routes')

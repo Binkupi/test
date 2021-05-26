@@ -1,0 +1,82 @@
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr bgcolor="#f4fbeb">
+    <td width="21%" valign="top"><img src="/images/LogotypeKvitka.gif" width="200" height="101" align="top" /></td>
+    <td width="28%" valign="top"><table width="117%" border="0" cellpadding="0" cellspacing="2">
+      <tr>
+        <td><span class="style12">(08) 9891234 </span></td>
+      </tr>
+      <tr>
+        <td><span class="style10">(Giờ mở cửa: 8:00 - 22:00 mỗi ngày) </span></td>
+      </tr>
+      <tr>
+        <td><span class="style10"><img src="/images/IconMail.gif" width="16" height="16" /> <a href="./ktphuong@hcmuns.edu.vn">ktphuong@hcmuns.edu.vn </a></span></td>
+      </tr>
+      <tr>
+        <td><span class="style10"><img src="/images/online0.gif" width="18" height="18" />hoadep.com.vn</span></td>
+      </tr>
+    </table></td>
+    <td colspan="3" valign="top">	
+	<form name="form1" method="get" action="/hoa/timkiem">
+      <table width="100%"  border="0" cellpadding="0" cellspacing="0" bordercolor="#BBE09D">
+        <tr bgcolor="#F4F8E9">
+          <td colspan="2" align="center" class="style1"><span class="style4"> T&igravem ki&#7871m b&oacute hoa </span></td>
+          </tr>
+        <tr>
+          <td width="36%" bordercolor="#FFFFFF" bgcolor="#E8F6DC"><blockquote class="style10">
+            <p>T&ecircn b&oacute hoa: </p>
+          </blockquote></td>
+          <td width="64%" bordercolor="#FFFFFF" bgcolor="#E8F6DC"><input name="tenhoa" type="text" id="name" size="30"></td>
+        </tr>
+        <tr>
+          <td height="40" colspan="2" align="center" bgcolor="#E0F1CD">
+           <button type="submit" >Tìm kiếm</button>         </td>
+        </tr>
+      </table>
+    </form></td>
+  </tr>
+  <tr bgcolor="#F4FBEB">
+    <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><table width="100%" border="0">
+            <tr bgcolor="#F4FBEB">
+              <td bgcolor="#C7EAB0">&nbsp<span class="style3">Danh mục</span></td>
+            </tr>
+            <tr bgcolor="#F4FBEB">
+              <td>&nbsp<a href="trang_1.php" class="style10">Trang ch&#7911</a></td>
+            </tr>
+            <tr bgcolor="#F4FBEB">
+              <td>&nbsp<a href="trang_2.php" class="style10">T&igravem ki&#7871m b&oacute hoa </a></td>
+            </tr>
+            <tr bgcolor="#F4FBEB">
+              <td>&nbsp<a href="trang_3.php" class="style10">Th&ecircm m&#7899i b&oacute hoa </a></td>
+            </tr>
+          </table>		  </td>
+      </tr>
+      <tr>
+        <td valign="bottom" bgcolor="#F4FBEB">&nbsp</td>
+      </tr>
+    </table>    
+    <img src="/images/BannerSideCreative.jpg" width="200" height="200" /></td>
+    <td colspan="3" valign="top">
+	<table width='100%' align='center' >
+        
+        {{#each Hoa}}
+        <tr>
+            <td><a href="/hoa/{{this.mahoa}}"><img src="/images/{{this.hinh}}"></a><br>Tên hoa :{{this.tenhoa }}<br>Giá bán: {{this.giaban}}</td>  
+            </tr>
+        {{/each}}	 
+        </tr>  
+    
+    </table>
+  </tr>
+  <tr>
+    <td valign="top" bgcolor="#c7eab0"><span class="style2">Copyright &copy2003-2007 <br />
+    Công ty thiết kế Ý Tưởng </span></td>
+    <td valign="top" bgcolor="#c7eab0"><span class="style17"></span></td>
+    <td width="27%" valign="top" bgcolor="#c7eab0"><span class="style17"></span></td>
+    <td bgcolor="#c7eab0"><span class="style10"><img src="/images/IconMail.gif" width="16" height="16" />
+	    <a href="./ktphuong@hcmuns.edu.vn">ktphuong@hcmuns.edu.vn</a>
+      <br />
+      <img src="/images/online0.gif" width="18" height="18" />hoadep.com.vn</span></td>
+  </tr>
+</table>
