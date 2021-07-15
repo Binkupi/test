@@ -9,22 +9,22 @@ const slug=require('mongoose-slug-generator');
 var mongooseDelete = require('mongoose-delete');
 
 //tạo đối tượng Productmen
-const Hoa= new Schema({
-  mahoa:{type:String,required:true},
-  maloai:{type:String,},
-  tenhoa:{type:String},
-  giaban:{type:Number,},
-  hinh:{type:String},
-  mota:{type:String},
-
-
+const Bill= new Schema({
+  ma_bill:{type:String,required:true},
+  ma_kh:{type:String},
+  tenkhachhang:{type:String},
+  products:{type:Array},
+  total_price:{type:Number},
+  status:{type:String},
+  dia_chi:{type:String},
+  booking_date:{type:Date},
 })
 //add plugin
 //Plugin render ra slug
 mongoose.plugin(slug);
 //Plugin xóa mềm
-Hoa.plugin(mongooseDelete,{ 
+Bill.plugin(mongooseDelete,{ 
 deletedAt:true,
 overrideMethods: 'all' });
 
-module.exports=mongoose.model('Hoa',Hoa);
+module.exports=mongoose.model('Bill',Bill);

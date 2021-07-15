@@ -42,13 +42,13 @@
               <td bgcolor="#C7EAB0">&nbsp<span class="style3">Danh mục</span></td>
             </tr>
             <tr bgcolor="#F4FBEB">
-              <td>&nbsp<a href="trang_1.php" class="style10">Trang ch&#7911</a></td>
+              <td>&nbsp<a href="/" class="style10">Trang ch&#7911</a></td>
             </tr>
             <tr bgcolor="#F4FBEB">
-              <td>&nbsp<a href="trang_2.php" class="style10">T&igravem ki&#7871m b&oacute hoa </a></td>
+              <td>&nbsp<a href="/hoa/timkiem" class="style10">T&igravem ki&#7871m b&oacute hoa </a></td>
             </tr>
             <tr bgcolor="#F4FBEB">
-              <td>&nbsp<a href="trang_3.php" class="style10">Th&ecircm m&#7899i b&oacute hoa </a></td>
+              <td>&nbsp<a href="/hoa/create" class="style10">Th&ecircm m&#7899i b&oacute hoa </a></td>
             </tr>
           </table>		  </td>
       </tr>
@@ -60,12 +60,7 @@
     <td colspan="3" valign="top">
 	<table width='100%' align='center' >
         
-        {{#each Hoa}}
-        <tr>
-            <td><a href="/hoa/{{this.mahoa}}"><img src="/images/{{this.hinh}}"></a><br>Tên hoa :{{this.tenhoa }}<br>Giá bán: {{this.giaban}}</td>  
-            </tr>
-        {{/each}}	 
-        </tr>  
+        {{{renderProduct Hoa}}}
     
     </table>
   </tr>
