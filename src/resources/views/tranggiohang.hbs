@@ -47,23 +47,37 @@
                 <th scope="col">STT</th>
                 <th scope="col">Mã sản phẩm</th>
                 <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Số lượng</th>
                 <th scope="col">Giá bán</th>
                 <th scope="col">Hành động</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each products}}
-                  <tr>
-                <th scope="row">{{index}}</th>
+                <form method="post" action="giohang/update/{{this.mahoa}}">
+                    <tr>
+                    <th scope="row">{{index}}</th>
                     <td>{{this.mahoa}}</td>
                     <td>{{this.tenhoa}}</td>
-                    <td>{{this.giaban}}</td>
-                    <td><a class="btn btn-danger" href="giohang/delete/{{this.mahoa}}">Xóa</a></td>
+                    <td><input name="quantity" value="{{this.quantity}}"></td>
+                    <td>{{this.giaban}} VND</td>
+                    <td><button class="btn btn-info" type="submit">Cập nhật</button>
+                        <a class="btn btn-danger" href=""data-toggle="modal" data-id="{{this.mahoa}}"data-target="#delete-hoa" >Xóa</a>
+                    </td>
+                </tr>
+                </form>
+                  
+                {{else}}
+                <tr>  
+                  <th scope="row" colspan="8">
+                    <h4> Giỏ hàng của bạn trống tiếp tục mua sắm nào.<a href="/" class="text-info"> Tiếp tục mua sắm</a></h4>
+                  </th>
                 </tr>
                 {{/each}}	
                 
             </tbody>
         </table>
+        {{#if products}}
         <div class="row mt-5 mb-5">
             <div class="col-9 text-right">
                 <span>Tổng tiền cần phải thanh toán {{totalPrice}} VND</span>
@@ -75,6 +89,8 @@
             </div>
             
         </div>
+        {{/if}}	
+        
 	</td>
   </tr>
   <tr>
@@ -88,3 +104,47 @@
       <img src="/images/online0.gif" width="18" height="18" />hoadep.com.vn</span></td>
   </tr>
 </table>
+<!-- confirm delete Modal -->
+<div class="modal fade" id="delete-hoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hủy bỏ đơn hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn sản phẩm khỏi giỏ hàng?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btn-delete-hoa" >có</button>
+        <button type="button"  class="btn btn-primary"data-dismiss="modal">không</button>
+      </div>
+    </div>
+  </div>
+</div>
+<form method="post" id="form-delete-hoa" ></form>
+<script>
+    
+    //when diolog confirm clicks
+    document.addEventListener("DOMContentLoaded",function(){
+      
+        var ma_hoa;
+        var deleteForm=document.getElementById('form-delete-hoa');
+        var btnDeleteHoa=document.getElementById("btn-delete-hoa");
+
+    $('#delete-hoa').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+     ma_hoa = button.data('id') // Extract info from data-* attributes
+     console.log(ma_hoa);
+
+    })
+     btnDeleteHoa.onclick=function(){
+      deleteForm.action='/giohang/delete/'+ma_hoa;
+      deleteForm.submit();
+    }
+   
+    })
+    
+</script>

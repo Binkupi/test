@@ -9,26 +9,31 @@ const {mutipleMongooseToObject,mongooseToObject,generateIdHoa}=require('../../ut
 
 class BillController{
     get(req,res,next){
-        req.session.username='123'
-        var username=req.session.username;
-        Bill.find({ma_kh:username})
-        .then((Bills)=>{
-            Bills =mutipleMongooseToObject(Bills);
-            Bills.forEach((bill,index)=>{
-                bill.index=index+1;
-                var name_products='';
-                var length=bill.products.length;
-                bill.products.forEach((product,index)=>{
-                    if(index<length-1){
-                        name_products+=product.tenhoa+', ';
-                    }else{
-                        name_products+=product.tenhoa;
-                    }
+        var username=req.session.user?req.session.user.username:'';
+        if(username===''){
+            req.session.message='Bạn cần đăng nhập trước khi xem hóa đơn';
+            res.redirect('/');
+        }else{
+            Bill.find({ma_kh:username})
+            .then((Bills)=>{
+                Bills =mutipleMongooseToObject(Bills);
+                Bills.forEach((bill,index)=>{
+                    bill.index=index+1;
+                    var name_products='';
+                    var length=bill.products.length;
+                    bill.products.forEach((product,index)=>{
+                        if(index<length-1){
+                            name_products+=product.tenhoa+'('+product.quantity+')'+', ';
+                        }else{
+                            name_products+=product.tenhoa+'('+product.quantity+')';
+                        }
+                    })
+                    bill.ten_sp=name_products;
                 })
-                bill.ten_sp=name_products;
+                res.render('tranggiaohang',{Bills:Bills});
             })
-            res.render('tranggiaohang',{Bills:Bills});
-        })
+        }
+        
         
         
     }
@@ -45,7 +50,11 @@ class BillController{
         })   
     }
     cancelBill(req,res,next){
-        console.log("213");
+        var ma_bill=req.params.ma_bill;
+        Bill.updateOne({ma_bill:ma_bill},{status:'đã hủy'})
+        .then(()=>{
+            res.redirect('/bills');
+        })
        
     }
     

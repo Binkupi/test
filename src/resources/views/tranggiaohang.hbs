@@ -49,6 +49,8 @@
                 <th scope="col">Mã đơn hàng</th>
                 <th scope="col">Tên sản phẩm đã mua</th>
                 <th scope="col">Giá thanh toán</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Email</th>
                 <th scope="col">Địa chỉ giao hàng</th>
                 <th scope="col">Ngày mua hàng</th>
                 <th scope="col">Trạng thái của đơn hàng</th>
@@ -61,12 +63,16 @@
                 <th scope="row">{{index}}</th>
                     <td>{{this.ma_bill}}</td>
                     <td>{{this.ten_sp}}</td>
-                    <td>{{this.total_price}}</td>
+                    <td>{{this.total_price}} VND</td>
+                    <td>{{this.so_dt}}</td>
+                     <td>{{this.email}}</td>
                     <td>{{this.dia_chi}}</td>
                     <td>{{this.booking_date}}</td>
-                     <td>{{this.status}}</td>
+                    <td scope="col">{{{renderStatus this.status this.ma_bill}}}</td>
                      <td scope="col"><a class="btn btn-danger text-light" href=""data-toggle="modal" data-id="{{this.ma_bill}}"data-target="#cancel-bill">Hủy</a></td>
                 </tr>
+                
+                  
                 {{/each}}	
                 
             </tbody>
@@ -106,7 +112,8 @@
     </div>
   </div>
 </div>
-<form method="put" id="form-cancel-bill"></form>
+<form method="post" id="form-cancel-bill" >
+</form>
 <script>
     
     //when diolog confirm clicks
@@ -118,13 +125,12 @@
 
     $('#cancel-bill').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
-    ma_bill = button.data('id') // Extract info from data-* attributes
-     console.log(ma_bill);
+     ma_bill = button.data('id') // Extract info from data-* attributes
 
     })
    
     btnCancelBill.onclick=function(){
-      cancelForm.action='/bills/'+ma_bill+"?_method=PUT";
+      cancelForm.action='/bills/'+ma_bill+"";
       cancelForm.submit();
     }
     })

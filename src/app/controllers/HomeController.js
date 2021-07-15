@@ -13,15 +13,19 @@ renderProduct(req,res,next){
       .then(([Hoa,LoaiHoa])=>{
          Hoa =mutipleMongooseToObject(Hoa);
          LoaiHoa =mutipleMongooseToObject(LoaiHoa);
-         req.session.username='123'
-         var username=req.session.username;
-         
+         var ho_ten=req.session.user?req.session.user.ho_ten:'';
+         var username=req.session.user?req.session.user.username:'';
+         var message=req.session.message?req.session.message:'';
+
          res.render('trang1',{
                    Hoa:Hoa,
                    LoaiHoa:LoaiHoa,
                    username:username,
-                   length:length
+                   length:length,
+                   message:message,
+                   ho_ten:ho_ten
                                });
+         req.session.message='';
  
       })
      .catch(next);}
@@ -30,15 +34,18 @@ renderProduct(req,res,next){
       .then(([Hoa,LoaiHoa])=>{
          Hoa =mutipleMongooseToObject(Hoa);
          LoaiHoa =mutipleMongooseToObject(LoaiHoa);
-         req.session.username='123'
-         var username=req.session.username;
+          var username=req.session.user?req.session.user.username:'';
+          var ho_ten=req.session.user?req.session.user.ho_ten:'';
+          var message=req.session.message?req.session.message:'';
          res.render('trang1',{
                    Hoa:Hoa,
                    LoaiHoa:LoaiHoa,
                    username:username,
-                   length:length
+                   length:length,
+                   message:message,
+                   ho_ten:ho_ten
                                });
- 
+         req.session.message='';
       })
      }
 }

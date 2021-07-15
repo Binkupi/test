@@ -15,6 +15,42 @@ logout(req,res,next){
     res.redirect('/');
 }
 
+login(req, res, next){
+    var username=req.body.username;
+    var password=req.body.password;
+    User.findOne({username:username})
+    .then((user)=>{
+        if(user){
+            
+            bcrypt.compare(password, user.password).then((result)=>{
+                
+                if(result){
+                    req.session.user={
+                        username:user.username,
+                        ho_ten:user.ho_ten,
+                        dia_chi:user.diachi,
+                        so_dt:user.so_dt,
+                        email:user.email,
+                        };
+                    res.redirect('back');
+                }else{
+                    req.session.message='Mật khẩu không chính xác. Vui lòng kiểm tra lại';
+                    res.redirect('/');
+                }
+            })
+            
+        }
+        else{
+            req.session.message='Tài khoản không tồn tại. Vui lòng kiểm tra lại';
+            res.redirect('/');
+        }
+       
+        
+    })
+    .catch(next);
+    
+    
+}
 addUser(req,res,next){
     User.find({username:req.body.username})
     .then((user)=>{
@@ -25,7 +61,7 @@ addUser(req,res,next){
          }else{
              if(req.body.password==req.body.mat_khau1){
                 const password = bcrypt.hashSync(req.body.password, saltRounds);
-                console.log('diachi'+req.body.diachi);
+
                var newUser={
                 username: req.body.username,
                 password:password,
@@ -37,7 +73,7 @@ addUser(req,res,next){
              const user=new User(newUser);
              user.save()
              .then(()=>{
-                 console.log("thành công");
+
                  res.redirect("/");
              })
              .catch(next);

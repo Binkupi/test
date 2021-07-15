@@ -17,6 +17,8 @@ const Bill= new Schema({
   total_price:{type:Number},
   status:{type:String},
   dia_chi:{type:String},
+  so_dt:{type:String},
+  email:{type:String},
   booking_date:{type:Date},
 })
 //add plugin

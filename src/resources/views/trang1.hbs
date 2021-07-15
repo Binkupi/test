@@ -17,19 +17,20 @@
       </tr>
     </table></td>
     <td width="27%" valign="top">
-	 <form id="form1" name="form1" method="post" action="/dangnhap">
-	<table width="100%" border="0" cellpadding="0" cellspacing="2">
+	 
         {{#if username}}
             
         {{else}}
+        <form id="form1" name="form1" method="post" action="/user/login">
+	    <table width="100%" border="0" cellpadding="0" cellspacing="2">
             <tr>
-                <td colspan="2"><div align="center" class="style5">          Đăng nhập</div></td>
+                <td colspan="2"><div align="center" class="style5"> Đăng nhập</div></td>
                 </tr>
             <tr>
                 <td width="46%"><p class="style10">Tên đăng nhập: </p></td>
                 <td width="54%"><span class="style10">
                 <label>
-                    <input name="ten_dn" type="text" id="ten_dn" size="15" />
+                    <input name="username" type="text" id="username" size="15" />
                     </label>
                 </span> </td>
             </tr>
@@ -37,21 +38,33 @@
                 <td><p class="style10">Mật khẩu: </p></td>
                 <td><span class="style10">
                 <label>
-                    <input name="mat_khau" type="password" id="mat_khau" size="15" />
+                    <input name="password" type="password" id="mat_khau" size="15" />
                     </label>
                 </span></td>
             </tr>
-            
+            <tr>
                 <td colspan="2"><div align="center">
                 <label>
-                <input type="submit" name="Submit" value="Đăng nhập" />
+                <input type="submit" name="Submit" class="btn-success" value="Đăng nhập" />
                 </label>
                 </div></td>
-        </tr>
+                
+            </tr>
+            <tr>
+                <td colspan="2"><div align="center">
+                    {{#if message}}
+                        <span class="text-danger">
+                            {{message}}
+                        </span>
+                        {{/if}}
+                    </div>
+                </td>
+            </tr>
+         </table>	</form>
         {{/if}}
 	 
 
-    </table>	</form></td>
+   </td>
     <td width="24%" valign="top"><table width="100%" border="0">
       <tr>
         <td valign="top"><div align="center" class="style5">          Có thể thanh toán bằng</div></td>
@@ -65,12 +78,12 @@
       <tr>
         <td valign="top"></span>
             {{#if username}}
-                <span class="mb-3">Xin chào <b>{{username}}</b></span>
+                <span class="mb-3">Xin chào <b>{{ho_ten}}</b></span>
                 <a href="/user/logout" class="btn btn-light ml-2 mb-3">Đăng xuất</a><br>
                 <a href="/bills" class="btn btn-primary mr-2">Theo dõi đơn hàng</a>
                 <a href="/giohang" class="btn btn-info">Giỏ hàng ({{length}})</a>
             {{else}}
-                <a href="/giohang" class="btn btn-info">Giỏ hàng của bạn ({{length}})</a>
+                
             {{/if}}
         </td>
       </tr>

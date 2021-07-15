@@ -33,11 +33,11 @@ app.engine('hbs', exphbs({
                 for(var i=0;i<length;i++){
                     if(count<3){
                         count++;
-                        text+=`<td>
+                        text+=`<td >
                                 <a href="/hoa/${products[i].mahoa}"><img src="/images/${products[i].hinh}"></a><br>
-                                Tên hoa :${products[i].tenhoa }<br>
+                                <a href="/hoa/${products[i].mahoa}" class="text-info mt-3 mb-3">Tên hoa :${products[i].tenhoa }</a><br>
                                 Giá bán: ${products[i].giaban} VND</br> 
-                                <a href="/giohang/add-item/${products[i].mahoa}">Mua hàng</a>
+                                <a href="/giohang/add-item/${products[i].mahoa}" class="mb-5 mt-2 btn btn-success">Mua hàng</a>
                                 </td>  
                             `   
                     }else{
@@ -50,6 +50,16 @@ app.engine('hbs', exphbs({
             addClassActive:(loaihoa, maloai)=>{
                 
             return loaihoa.loai==maloai?'style="color:red"':'';
+            }
+            ,
+            renderStatus:(status,ma_bill)=>{
+                var text='';
+                if(status==="đang xử lý"){
+                    text=`<span class="badge badge--custom badge-warning" href=""data-toggle="modal" data-id="${ma_bill}"data-target="#cancel-bill">${status}</span>`;
+                }else if(status==="đã hủy"){
+                    text=`<span class="badge badge--custom badge-danger" href=""data-toggle="modal" data-id="${ma_bill}"data-target="#cancel-bill">${status}</span>`;
+                }
+            return text;
             }
         }
         
